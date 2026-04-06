@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laattacenter Seinäjoki – Lattiat, seinälaatat & kodin pintamateriaalit</title>
+  <meta name="description" content="Laattacenter Seinäjoki – Laaja valikoima laattoja, parkettia ja kodin pintamateriaaleja. Ammattitaitoinen palvelu ja asiantunteva neuvonta." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #C00000;
+      --red-dark: #960000;
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray-light: #f5f5f5;
+      --gray-mid: #e0e0e0;
+      --gray-text: #555;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--black);
+      background: var(--white);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 2px solid var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: 64px;
+      transition: box-shadow .3s;
+    }
+    header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.12); }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.55rem;
+      letter-spacing: -.5px;
+      color: var(--black);
+      line-height: 1;
+    }
+    .logo-text span { color: var(--red); }
+    .logo-sub {
+      font-family: var(--font-display);
+      font-size: .72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray-text);
+      display: block;
+      font-weight: 600;
+    }
+
+    nav { display: flex; align-items: center; gap: 2px; }
+    nav a {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: .88rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      padding: 6px 14px;
+      transition: color .2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 14px; right: 14px;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform .2s;
+    }
+    nav a:hover { color: var(--red); }
+    nav a:hover::after { transform: scaleX(1); }
+
+    .header-right { display: flex; align-items: center; gap: 16px; }
+
+    .lang-toggle {
+      display: flex;
+      border: 1.5px solid var(--black);
+      border-radius: 2px;
+      overflow: hidden;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: 1px;
+    }
+    .lang-toggle button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 11px;
+      transition: background .2s, color .2s;
+      color: var(--black);
+    }
+    .lang-toggle button.active {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--black);
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--white);
+      border-bottom: 2px solid var(--black);
+      flex-direction: column;
+      padding: 24px 5vw;
+      gap: 4px;
+      z-index: 99;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gray-mid);
+      transition: color .2s;
+    }
+    .mobile-nav a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 64px;
+      min-height: calc(100svh - 64px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 5vw 80px 8vw;
+      background: var(--white);
+    }
+    .hero-eyebrow {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: .8rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: .95;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red);
+      display: block;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--gray-text);
+      max-width: 380px;
+      margin-bottom: 44px;
+      line-height: 1.7;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--red);
+      color: var(--white);
+      padding: 16px 36px;
+      border: 2px solid var(--red);
+      transition: background .2s, color .2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-dark); border-color: var(--red-dark); }
+    .btn-outline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      color: var(--black);
+      padding: 16px 36px;
+      border: 2px solid var(--black);
+      transition: background .2s, color .2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: var(--black); color: var(--white); }
+
+    .hero-visual {
+      position: relative;
+      background: var(--gray-light);
+      overflow: hidden;
+    }
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(0,0,0,.07) 59px, rgba(0,0,0,.07) 60px),
+        repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(0,0,0,.07) 59px, rgba(0,0,0,.07) 60px);
+    }
+    .hero-tile-grid {
+      position: absolute;
+      inset: 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .hero-tile {
+      border-radius: 0;
+      transition: transform .3s;
+    }
+    .hero-tile:hover { transform: scale(1.04); }
+    .ht1 { background: var(--black); }
+    .ht2 { background: #d4c5b0; }
+    .ht3 { background: var(--red); }
+    .ht4 { background: #e8e0d5; }
+    .ht5 { background: #2a2a2a; grid-column: span 2; }
+    .ht6 { background: #c8bba8; }
+    .ht7 { background: var(--red); grid-row: span 2; opacity: .25; }
+    .ht8 { background: #f0ebe4; }
+    .ht9 { background: var(--black); opacity: .7; }
+    .hero-badge {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      background: var(--red);
+      color: var(--white);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: .8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 20px;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 5vw; }
+    .section-label {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: .78rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      color: var(--gray-text);
+      max-width: 500px;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 60px;
+    }
+
+    /* ── PRODUCTS ── */
+    #tuotteet { background: var(--gray-light); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2px;
+    }
+    .product-card {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: flex-end;
+    }
+    .product-card-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform .4s ease;
+    }
+    .product-card:hover .product-card-bg { transform: scale(1.06); }
+    .pc-floor    .product-card-bg { background: linear-gradient(135deg, #c8b89a 0%, #8a7158 100%); }
+    .pc-wall     .product-card-bg { background: linear-gradient(135deg, #e0ddd8 0%, #b5b0a8 100%); }
+    .pc-mosaic   .product-card-bg {
+      background: repeating-conic-gradient(#c00000 0% 25%, #0a0a0a 0% 50%) 0 0 / 30px 30px;
+      opacity: .8;
+    }
+    .pc-outdoor  .product-card-bg { background: linear-gradient(135deg, #7a8c6e 0%, #4a5c3e 100%); }
+    .pc-parquet  .product-card-bg { background: linear-gradient(135deg, #a0784a 0%, #6b4e2a 100%); }
+    .pc-sanitary .product-card-bg { background: linear-gradient(135deg, #d8e8ec 0%, #9ab8c2 100%); }
+    .product-card-info {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 20px 24px;
+      background: linear-gradient(transparent, rgba(0,0,0,.72));
+      color: var(--white);
+      transform: translateY(8px);
+      transition: transform .3s;
+    }
+    .product-card:hover .product-card-info { transform: translateY(0); }
+    .product-card-info h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .product-card-info p {
+      font-size: .82rem;
+      opacity: .8;
+    }
+    .product-card-arrow {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 36px; height: 36px;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .product-card:hover .product-card-arrow { opacity: 1; }
+    .product-card-arrow svg { width: 16px; height: 16px; fill: var(--white); }
+
+    /* ── SERVICES ── */
+    #palvelut { background: var(--white); }
+    .services-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .services-list { display: flex; flex-direction: column; }
+    .service-item {
+      border-top: 1.5px solid var(--gray-mid);
+      padding: 28px 0;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+      cursor: default;
+      transition: border-color .2s;
+    }
+    .service-item:hover { border-color: var(--red); }
+    .service-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--red);
+      padding-top: 2px;
+    }
+    .service-item h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .service-item p { font-size: .9rem; color: var(--gray-text); line-height: 1.65; }
+
+    .services-visual {
+      position: sticky;
+      top: 100px;
+      aspect-ratio: 3/4;
+      background: var(--black);
+      overflow: hidden;
+    }
+    .services-visual-inner {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 2fr 1fr;
+      gap: 4px;
+    }
+    .sv1 { background: #3a2a1a; grid-row: span 2; }
+    .sv2 { background: var(--red); opacity: .9; }
+    .sv3 { background: #1a1a1a; }
+    .sv-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: var(--red);
+      color: var(--white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 18px 24px;
+    }
+
+    /* ── REFERENCES ── */
+    #referenssit { background: var(--black); color: var(--white); }
+    #referenssit .section-label { color: var(--red); }
+    #referenssit .section-title { color: var(--white); }
+    #referenssit .section-subtitle { color: rgba(255,255,255,.55); }
+    .refs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .ref-card {
+      background: #141414;
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+    }
+    .ref-card:hover { background: #1e1e1e; }
+    .ref-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px; right: 20px;
+      font-family: var(--font-display);
+      font-size: 8rem;
+      font-weight: 800;
+      color: var(--red);
+      opacity: .2;
+      line-height: 1;
+    }
+    .ref-text {
+      font-size: .95rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 28px;
+    }
+    .ref-author {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .ref-role {
+      font-size: .78rem;
+      color: var(--red);
+      margin-top: 4px;
+    }
+
+    /* ── CTA ── */
+    #yhteystiedot-cta {
+      background: var(--red);
+      color: var(--white);
+      text-align: center;
+      padding: 100px 5vw;
+    }
+    #yhteystiedot-cta .section-label { color: rgba(255,255,255,.7); }
+    #yhteystiedot-cta .section-title { color: var(--white); margin-bottom: 20px; }
+    #yhteystiedot-cta p { color: rgba(255,255,255,.8); font-size: 1rem; margin-bottom: 48px; max-width: 440px; margin-left: auto; margin-right: auto; }
+    #yhteystiedot-cta .btn-primary {
+      background: var(--white);
+      color: var(--red);
+      border-color: var(--white);
+    }
+    #yhteystiedot-cta .btn-primary:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+    #yhteystiedot-cta .btn-outline {
+      border-color: rgba(255,255,255,.6);
+      color: var(--white);
+    }
+    #yhteystiedot-cta .btn-outline:hover {
+      background: var(--white);
+      color: var(--red);
+    }
+    #yhteystiedot-cta .hero-ctas { justify-content: center; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,.5);
+      padding: 64px 5vw 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+    .footer-brand .logo-text { color: var(--white); font-size: 1.4rem; }
+    .footer-brand p {
+      font-size: .875rem;
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 260px;
+    }
+    footer h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    footer ul a {
+      color: rgba(255,255,255,.5);
+      text-decoration: none;
+      font-size: .875rem;
+      transition: color .2s;
+    }
+    footer ul a:hover { color: var(--red); }
+    footer ul li { font-size: .875rem; line-height: 1.5; }
+    .footer-bottom {
+      border-top: 1px solid #222;
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .78rem;
+    }
+    .footer-bottom span { color: var(--red); }
+
+    /* ── STATS ── */
+    .stats-bar {
+      background: var(--black);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 48px 32px;
+      border-right: 1px solid #222;
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 3rem;
+      color: var(--red);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-family: var(--font-display);
+      font-size: .78rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ── PHOTO GALLERY ── */
+    .refs-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 48px;
+    }
+    .refs-photo {
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      position: relative;
+    }
+    .refs-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+      display: block;
+    }
+    .refs-photo:hover img { transform: scale(1.05); }
+    .refs-photo-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.65));
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: .8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 20px 20px 14px;
+      font-weight: 600;
+    }
+    @media (max-width: 600px) {
+      .refs-photos { grid-template-columns: 1fr; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in { animation: fadeUp .7s ease both; }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .22s; }
+    .delay-3 { animation-delay: .34s; }
+    .delay-4 { animation-delay: .46s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .refs-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav, .header-right .lang-toggle { display: none; }
+      .hamburger { display: flex; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 60px 6vw; }
+      .hero-visual { height: 280px; }
+      .services-layout { grid-template-columns: 1fr; }
+      .services-visual { display: none; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid #222; }
+      .refs-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      section { padding: 70px 5vw; }
+      .header-right { gap: 12px; }
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="main-header">
+  <a class="logo" href="#">
+    <div>
+      <div class="logo-text"><span>Laatta</span>center</div>
+      <span class="logo-sub">Seinäjoki Oy</span>
+    </div>
+  </a>
+
+  <nav>
+    <a href="#tuotteet" data-i18n="nav_products">Tuotteet</a>
+    <a href="#palvelut" data-i18n="nav_services">Palvelut</a>
+    <a href="#referenssit" data-i18n="nav_refs">Referenssit</a>
+    <a href="#yhteystiedot-cta" data-i18n="nav_contact">Yhteystiedot</a>
+  </nav>
+
+  <div class="header-right">
+    <div class="lang-toggle">
+      <button id="btn-fi" class="active">FI</button>
+      <button id="btn-en">EN</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Valikko">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="#tuotteet" data-i18n="nav_products">Tuotteet</a>
+  <a href="#palvelut" data-i18n="nav_services">Palvelut</a>
+  <a href="#referenssit" data-i18n="nav_refs">Referenssit</a>
+  <a href="#yhteystiedot-cta" data-i18n="nav_contact">Yhteystiedot</a>
+  <div class="lang-toggle" style="margin-top:12px;display:inline-flex">
+    <button id="btn-fi-m" class="active">FI</button>
+    <button id="btn-en-m">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow animate-in" data-i18n="hero_eyebrow">Laattamyymälä Seinäjoella</p>
+    <h1 class="animate-in delay-1">
+      <span data-i18n="hero_h1a">Kaunis koti</span>
+      <em data-i18n="hero_h1b">alkaa lattiasta.</em>
+    </h1>
+    <p class="animate-in delay-2" data-i18n="hero_desc">Löydä täydellinen laatta, parketti tai muu pintamateriaali asiantuntevalla palvelulla. Laaja valikoima – persoonallinen neuvonta.</p>
+    <div class="hero-ctas animate-in delay-3">
+      <a href="#tuotteet" class="btn-primary" data-i18n="hero_cta1">Selaa tuotteita</a>
+      <a href="#yhteystiedot-cta" class="btn-outline" data-i18n="hero_cta2">Ota yhteyttä</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-tile-grid">
+      <div class="hero-tile ht1"></div>
+      <div class="hero-tile ht2"></div>
+      <div class="hero-tile ht3"></div>
+      <div class="hero-tile ht4"></div>
+      <div class="hero-tile ht5"></div>
+      <div class="hero-tile ht6"></div>
+      <div class="hero-tile ht7"></div>
+      <div class="hero-tile ht8"></div>
+      <div class="hero-tile ht9"></div>
+    </div>
+    <div class="hero-badge" data-i18n="hero_badge">Yli 30 vuotta<br>alalla</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">30+</span>
+    <span class="stat-label" data-i18n="stat_years">Vuotta kokemusta</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">500+</span>
+    <span class="stat-label" data-i18n="stat_products">Tuotevaihtoehtoa</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">1000+</span>
+    <span class="stat-label" data-i18n="stat_customers">Tyytyväistä asiakasta</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">5★</span>
+    <span class="stat-label" data-i18n="stat_rating">Asiakasarviointi</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="tuotteet">
+  <p class="section-label" data-i18n="products_label">Valikoima</p>
+  <h2 class="section-title" data-i18n="products_title">Tuotteet</h2>
+  <p class="section-subtitle" data-i18n="products_sub">Laaja valikoima laadukkaita pintamateriaaleja kotiin ja liiketiloihin.</p>
+
+  <div class="products-grid">
+    <div class="product-card pc-floor">
+      <div class="product-card-bg"></div>
+      <div class="product-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="product-card-info">
+        <h3 data-i18n="cat_floor">Lattialaatta</h3>
+        <p data-i18n="cat_floor_sub">Kivi, keraaminen, posliini</p>
+      </div>
+    </div>
+    <div class="product-card pc-wall">
+      <div class="product-card-bg"></div>
+      <div class="product-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="product-card-info">
+        <h3 data-i18n="cat_wall">Seinälaatta</h3>
+        <p data-i18n="cat_wall_sub">Kylpyhuone, keittiö, sauna</p>
+      </div>
+    </div>
+    <div class="product-card pc-mosaic">
+      <div class="product-card-bg"></div>
+      <div class="product-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="product-card-info">
+        <h3 data-i18n="cat_mosaic">Mosaiikki</h3>
+        <p data-i18n="cat_mosaic_sub">Lasi, marmori, mix</p>
+      </div>
+    </div>
+    <div class="product-card pc-outdoor">
+      <div class="product-card-bg"></div>
+      <div class="product-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="product-card-info">
+        <h3 data-i18n="cat_outdoor">Ulkolaatat</h3>
+        <p data-i18n="cat_outdoor_sub">Terassi, piha, portaat</p>
+      </div>
+    </div>
+    <div class="product-card pc-parquet">
+      <div class="product-card-bg"></div>
+      <div class="product-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="product-card-info">
+        <h3 data-i18n="cat_parquet">Parketti & laminaatti</h3>
+        <p data-i18n="cat_parquet_sub">Tammi, mänty, eksoottinen puu</p>
+      </div>
+    </div>
+    <div class="product-card pc-sanitary">
+      <div class="product-card-bg"></div>
+      <div class="product-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="product-card-info">
+        <h3 data-i18n="cat_sanitary">Saniteettikauppa</h3>
+        <p data-i18n="cat_sanitary_sub">Hanat, suihkut, kylpyamme</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="palvelut">
+  <div class="services-layout">
+    <div>
+      <p class="section-label" data-i18n="services_label">Mitä teemme</p>
+      <h2 class="section-title" data-i18n="services_title">Palvelut</h2>
+      <p class="section-subtitle" data-i18n="services_sub">Autamme sinua alusta loppuun – valinnasta asennukseen.</p>
+
+      <div class="services-list">
+        <div class="service-item">
+          <span class="service-num">01</span>
+          <div>
+            <h3 data-i18n="svc1_title">Asiantunteva myymälä</h3>
+            <p data-i18n="svc1_desc">Kokenut henkilökunta auttaa sinua löytämään juuri oikeanlaiset materiaalit projektisi tarpeisiin. Esittelytila Seinäjoella.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <span class="service-num">02</span>
+          <div>
+            <h3 data-i18n="svc2_title">Suunnittelun tuki</h3>
+            <p data-i18n="svc2_desc">Autamme materiaali- ja värivalinnoissa sekä visualisoimme kokonaisuuden ennen hankintaa.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <span class="service-num">03</span>
+          <div>
+            <h3 data-i18n="svc3_title">Asennus & laastit</h3>
+            <p data-i18n="svc3_desc">Myynnissä kaikki tarvittavat asennustarvikkeet: laastit, saumausaineet, alustat ja työkalut.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <span class="service-num">04</span>
+          <div>
+            <h3 data-i18n="svc4_title">Tilauspalvelu</h3>
+            <p data-i18n="svc4_desc">Emme löydä sopivaa hyllystä? Tilaamme juuri sinun projektisi vaatimat materiaalit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="services-visual" style="position:relative">
+      <div class="services-visual-inner">
+        <div class="sv1"></div>
+        <div class="sv2"></div>
+        <div class="sv3"></div>
+      </div>
+      <div class="sv-label" data-i18n="svc_label">Asiantuntemus käytössäsi</div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="referenssit">
+  <p class="section-label" data-i18n="refs_label">Asiakkaat sanovat</p>
+  <h2 class="section-title" data-i18n="refs_title">Referenssit</h2>
+  <p class="section-subtitle" data-i18n="refs_sub">Olemme auttaneet satoja asiakkaita kotinsa uudistamisessa.</p>
+
+  <div class="refs-photos">
+    <div class="refs-photo">
+      <img src="kuva1.jpg" alt="Kylpyhuone ruskeilla marmorilautoilla ja pyöreä valaistu peili" />
+      <div class="refs-photo-label" data-i18n="ref_photo1">Kylpyhuone – marmorilaatat</div>
+    </div>
+    <div class="refs-photo">
+      <img src="kuva2.webp" alt="Moderni kylpyhuone vaalean marmorilaatan ja mustien kalusteiden kanssa" />
+      <div class="refs-photo-label" data-i18n="ref_photo2">Kylpyhuone – vaalea marmori</div>
+    </div>
+  </div>
+
+  <div class="refs-grid">
+    <div class="ref-card">
+      <p class="ref-text" data-i18n="ref1_text">Erinomainen palvelu ja laaja valikoima. Löysimme täydellisen kylpyhuonelaatan helposti, ja henkilökunta osasi neuvoa värimaailman kokonaisuutena.</p>
+      <div class="ref-author" data-i18n="ref1_name">Matti Korhonen</div>
+      <div class="ref-role" data-i18n="ref1_role">Omakotitalon remontti, Seinäjoki</div>
+    </div>
+    <div class="ref-card">
+      <p class="ref-text" data-i18n="ref2_text">Ammattitaitoinen ja nopea palvelu. Rakennusprojektimme aikataulu piti, ja materiaalit olivat laadukkaita alusta loppuun.</p>
+      <div class="ref-author" data-i18n="ref2_name">Rakennus Oy Pohjanmaa</div>
+      <div class="ref-role" data-i18n="ref2_role">Kerrostalohanke</div>
+    </div>
+    <div class="ref-card">
+      <p class="ref-text" data-i18n="ref3_text">Suosittelen lämpimästi! Myymälässä voi rauhassa vertailla vaihtoehtoja ja henkilökunta on aidosti kiinnostunut auttamaan.</p>
+      <div class="ref-author" data-i18n="ref3_name">Tiina Mäkinen</div>
+      <div class="ref-role" data-i18n="ref3_role">Keittiöremontti</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="yhteystiedot-cta">
+  <p class="section-label" data-i18n="cta_label">Aloitetaan projekti</p>
+  <h2 class="section-title" data-i18n="cta_title">Otetaan yhteyttä</h2>
+  <p data-i18n="cta_desc">Tule käymään myymälässä tai lähetä meille viesti. Autamme mielellämme löytämään oikean ratkaisun.</p>
+  <div class="hero-ctas">
+    <a href="tel:+358000000000" class="btn-primary" data-i18n="cta_call">Soita meille</a>
+    <a href="/cdn-cgi/l/email-protection#0861666e67486469697c7c696b6d667c6d7a26666d7c" class="btn-outline" data-i18n="cta_email">Lähetä sähköposti</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-text"><span style="color:var(--red)">Laatta</span>center</div>
+      <p data-i18n="footer_desc">Laadukkaita pintamateriaaleja kotiin ja liiketiloihin. Asiantunteva palvelu Seinäjoella vuodesta 1990.</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer_nav">Sivukartta</h4>
+      <ul>
+        <li><a href="#tuotteet" data-i18n="nav_products">Tuotteet</a></li>
+        <li><a href="#palvelut" data-i18n="nav_services">Palvelut</a></li>
+        <li><a href="#referenssit" data-i18n="nav_refs">Referenssit</a></li>
+        <li><a href="#yhteystiedot-cta" data-i18n="nav_contact">Yhteystiedot</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="footer_products">Tuotteet</h4>
+      <ul>
+        <li><a href="#" data-i18n="cat_floor">Lattialaatta</a></li>
+        <li><a href="#" data-i18n="cat_wall">Seinälaatta</a></li>
+        <li><a href="#" data-i18n="cat_mosaic">Mosaiikki</a></li>
+        <li><a href="#" data-i18n="cat_outdoor">Ulkolaatat</a></li>
+        <li><a href="#" data-i18n="cat_parquet">Parketti</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="footer_contact">Yhteystiedot</h4>
+      <ul>
+        <li>Kauppakatu 1</li>
+        <li>60100 Seinäjoki</li>
+        <li><a href="tel:+358000000000">+358 (0) 00 000 0000</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#f1989f979eb19d909085859092949f859483df9f9485"><span class="__cf_email__" data-cfemail="0d64636b624d616c6c79796c6e686379687f23636879">[email&#160;protected]</span></a></li>
+        <li style="margin-top:8px;color:rgba(255,255,255,.35);font-size:.8rem" data-i18n="footer_hours">Ma–Pe 8–17, La 9–13</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Laattacenter Seinäjoki Oy</span>
+    <span>Made with <span>♥</span> in Seinäjoki</span>
+  </div>
+</footer>
+<script>
+(function() {
+  var T = {
+    fi: {
+      nav_products:'Tuotteet',nav_services:'Palvelut',nav_refs:'Referenssit',nav_contact:'Yhteystiedot',
+      hero_eyebrow:'Laattamyymälä Seinäjoella',hero_h1a:'Kaunis koti',hero_h1b:'alkaa lattiasta.',
+      hero_desc:'Löydä täydellinen laatta, parketti tai muu pintamateriaali asiantuntevalla palvelulla. Laaja valikoima – persoonallinen neuvonta.',
+      hero_cta1:'Selaa tuotteita',hero_cta2:'Ota yhteyttä',hero_badge:'Yli 30 vuotta\nalalla',
+      stat_years:'Vuotta kokemusta',stat_products:'Tuotevaihtoehtoa',stat_customers:'Tyytyväistä asiakasta',stat_rating:'Asiakasarviointi',
+      products_label:'Valikoima',products_title:'Tuotteet',products_sub:'Laaja valikoima laadukkaita pintamateriaaleja kotiin ja liiketiloihin.',
+      cat_floor:'Lattialaatta',cat_floor_sub:'Kivi, keraaminen, posliini',
+      cat_wall:'Seinälaatta',cat_wall_sub:'Kylpyhuone, keittiö, sauna',
+      cat_mosaic:'Mosaiikki',cat_mosaic_sub:'Lasi, marmori, mix',
+      cat_outdoor:'Ulkolaatat',cat_outdoor_sub:'Terassi, piha, portaat',
+      cat_parquet:'Parketti & laminaatti',cat_parquet_sub:'Tammi, mänty, eksoottinen puu',
+      cat_sanitary:'Saniteettikauppa',cat_sanitary_sub:'Hanat, suihkut, kylpyamme',
+      services_label:'Mitä teemme',services_title:'Palvelut',services_sub:'Autamme sinua alusta loppuun – valinnasta asennukseen.',
+      svc1_title:'Asiantunteva myymälä',svc1_desc:'Kokenut henkilökunta auttaa sinua löytämään juuri oikeanlaiset materiaalit projektisi tarpeisiin. Esittelytila Seinäjoella.',
+      svc2_title:'Suunnittelun tuki',svc2_desc:'Autamme materiaali- ja värivalinnoissa sekä visualisoimme kokonaisuuden ennen hankintaa.',
+      svc3_title:'Asennus & laastit',svc3_desc:'Myynnissä kaikki tarvittavat asennustarvikkeet: laastit, saumausaineet, alustat ja työkalut.',
+      svc4_title:'Tilauspalvelu',svc4_desc:'Emme löydä sopivaa hyllystä? Tilaamme juuri sinun projektisi vaatimat materiaalit.',
+      svc_label:'Asiantuntemus käytössäsi',
+      refs_label:'Asiakkaat sanovat',refs_title:'Referenssit',refs_sub:'Olemme auttaneet satoja asiakkaita kotinsa uudistamisessa.',
+      ref1_text:'Erinomainen palvelu ja laaja valikoima. Löysimme täydellisen kylpyhuonelaatan helposti, ja henkilökunta osasi neuvoa värimaailman kokonaisuutena.',
+      ref1_name:'Matti Korhonen',ref1_role:'Omakotitalon remontti, Seinäjoki',
+      ref2_text:'Ammattitaitoinen ja nopea palvelu. Rakennusprojektimme aikataulu piti, ja materiaalit olivat laadukkaita alusta loppuun.',
+      ref2_name:'Rakennus Oy Pohjanmaa',ref2_role:'Kerrostalohanke',
+      ref3_text:'Suosittelen lämpimästi! Myymälässä voi rauhassa vertailla vaihtoehtoja ja henkilökunta on aidosti kiinnostunut auttamaan.',
+      ref3_name:'Tiina Mäkinen',ref3_role:'Keittiöremontti',
+      cta_label:'Aloitetaan projekti',cta_title:'Otetaan yhteyttä',
+      cta_desc:'Tule käymään myymälässä tai lähetä meille viesti. Autamme mielellämme löytämään oikean ratkaisun.',
+      cta_call:'Soita meille',cta_email:'Lähetä sähköposti',
+      footer_desc:'Laadukkaita pintamateriaaleja kotiin ja liiketiloihin. Asiantunteva palvelu Seinäjoella vuodesta 1990.',
+      footer_nav:'Sivukartta',footer_products:'Tuotteet',footer_contact:'Yhteystiedot',footer_hours:'Ma–Pe 8–17, La 9–13',
+      ref_photo1:'Kylpyhuone – marmorilaatat',ref_photo2:'Kylpyhuone – vaalea marmori'
+    },
+    en: {
+      nav_products:'Products',nav_services:'Services',nav_refs:'References',nav_contact:'Contact',
+      hero_eyebrow:'Tile Store in Seinäjoki',hero_h1a:'A beautiful home',hero_h1b:'starts from the floor.',
+      hero_desc:'Find the perfect tile, parquet or surface material with expert guidance. Wide selection – personal service.',
+      hero_cta1:'Browse products',hero_cta2:'Get in touch',hero_badge:'Over 30 years\nin business',
+      stat_years:'Years of experience',stat_products:'Product options',stat_customers:'Happy customers',stat_rating:'Customer rating',
+      products_label:'Selection',products_title:'Products',products_sub:'A wide selection of quality surface materials for homes and commercial spaces.',
+      cat_floor:'Floor tiles',cat_floor_sub:'Stone, ceramic, porcelain',
+      cat_wall:'Wall tiles',cat_wall_sub:'Bathroom, kitchen, sauna',
+      cat_mosaic:'Mosaic',cat_mosaic_sub:'Glass, marble, mix',
+      cat_outdoor:'Outdoor tiles',cat_outdoor_sub:'Terrace, yard, stairs',
+      cat_parquet:'Parquet & laminate',cat_parquet_sub:'Oak, pine, exotic wood',
+      cat_sanitary:'Sanitary ware',cat_sanitary_sub:'Taps, showers, bathtubs',
+      services_label:'What we do',services_title:'Services',services_sub:'We help you from start to finish – from selection to installation.',
+      svc1_title:'Expert showroom',svc1_desc:'Experienced staff help you find the right materials for your project. Showroom in Seinäjoki.',
+      svc2_title:'Design support',svc2_desc:'We assist with material and color choices and visualize the whole before purchase.',
+      svc3_title:'Installation & adhesives',svc3_desc:'All necessary installation materials in stock: adhesives, grouts, underlays and tools.',
+      svc4_title:'Order service',svc4_desc:"Can't find what you need? We order exactly what your project requires.",
+      svc_label:'Expertise at your service',
+      refs_label:'What clients say',refs_title:'References',refs_sub:'We have helped hundreds of customers renovate their homes.',
+      ref1_text:'Excellent service and wide selection. We easily found the perfect bathroom tile, and the staff expertly guided the whole color scheme.',
+      ref1_name:'Matti Korhonen',ref1_role:'House renovation, Seinäjoki',
+      ref2_text:'Professional and fast service. Our construction project stayed on schedule, and the materials were top quality throughout.',
+      ref2_name:'Rakennus Oy Pohjanmaa',ref2_role:'Apartment building project',
+      ref3_text:'Highly recommended! You can compare options at your own pace and the staff are genuinely interested in helping.',
+      ref3_name:'Tiina Mäkinen',ref3_role:'Kitchen renovation',
+      cta_label:'Start a project',cta_title:"Let's get in touch",
+      cta_desc:'Visit our showroom or send us a message. We are happy to help find the right solution.',
+      cta_call:'Call us',cta_email:'Send email',
+      footer_desc:'Quality surface materials for homes and commercial spaces. Expert service in Seinäjoki since 1990.',
+      footer_nav:'Site map',footer_products:'Products',footer_contact:'Contact',footer_hours:'Mon–Fri 8–17, Sat 9–13',
+      ref_photo1:'Bathroom – marble tiles',ref_photo2:'Bathroom – light marble'
+    }
+  };
+
+  function setLang(lang) {
+    var t = T[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    ['btn-fi','btn-en','btn-fi-m','btn-en-m'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var isEn = (id === 'btn-en' || id === 'btn-en-m');
+      el.classList.toggle('active', isEn ? lang === 'en' : lang === 'fi');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var bfi = document.getElementById('btn-fi');
+    var ben = document.getElementById('btn-en');
+    var bfim = document.getElementById('btn-fi-m');
+    var benm = document.getElementById('btn-en-m');
+    if (bfi)  bfi.addEventListener('click',  function(){ setLang('fi'); });
+    if (ben)  ben.addEventListener('click',  function(){ setLang('en'); });
+    if (bfim) bfim.addEventListener('click', function(){ setLang('fi'); });
+    if (benm) benm.addEventListener('click', function(){ setLang('en'); });
+
+    var ham = document.getElementById('hamburger');
+    var mob = document.getElementById('mobile-nav');
+    if (ham) ham.addEventListener('click', function() {
+      ham.classList.toggle('open');
+      mob.classList.toggle('open');
+    });
+    if (mob) mob.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        ham.classList.remove('open');
+        mob.classList.remove('open');
+      });
+    });
+
+    var hdr = document.getElementById('main-header');
+    window.addEventListener('scroll', function() {
+      hdr.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.product-card, .service-item, .ref-card, .stat-item').forEach(function(el, i) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity .6s ease ' + (i*0.07) + 's, transform .6s ease ' + (i*0.07) + 's';
+      obs.observe(el);
+    });
+  });
+})();
+</script>
+</body>
+</html>
